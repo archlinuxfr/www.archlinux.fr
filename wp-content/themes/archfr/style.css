@@ -1,0 +1,14 @@
+/*  
+ *  Theme Name: Arch Linux Theme
+ *  Theme URI: http://www.archlinux.fr
+ *  Description: Design d'Archlinux.org http://www.archlinux.org
+ *  Version: 2.0
+ *  Author: Tuxce <tuxce.net@gmail.com>
+ *  Author URI: http://tuxce.selfip.org
+ *  */
+
+
+
+@import url(/commun/archweb.css);
+
+code { font: 1em monospace; background: none; padding: 0.15em 0.25em; }
