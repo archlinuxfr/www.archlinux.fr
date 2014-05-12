@@ -1,14 +1,14 @@
 <?php
-$GLOBALS['archfr']['site_url'] = "http://www.archlinux.fr";
+$GLOBALS['archfr']['site_url'] = "//archlinux.fr";
 
 /* nav_link: array (key => array (label, link, title)) */
 $GLOBALS['archfr']['nav_link'] = array (
-    "home"      => array ("Accueil", "http://www.archlinux.fr/", "anb-home", ""),
-    "forum"     => array ("Forum", "http://forums.archlinux.fr/", "anb-forums", ""),
-    "wiki"      => array ("Wiki", "http://wiki.archlinux.fr/", "anb-wiki", ""),
-    "bug"       => array ("Bugs", "http://bugs.archlinux.org/", "anb-bugs", "Lien vers archlinux.org"),
+    "home"      => array ("Accueil", "//www.archlinux.fr/", "anb-home", ""),
+    "forum"     => array ("Forum", "//forums.archlinux.fr/", "anb-forums", ""),
+    "wiki"      => array ("Wiki", "//wiki.archlinux.fr/", "anb-wiki", ""),
+    "bug"       => array ("Bugs", "https://bugs.archlinux.org/", "anb-bugs", "Lien vers archlinux.org"),
     "aur"       => array ("AUR", "https://aur.archlinux.org/index.php?setlang=fr", "anb-aur", "Lien vers archlinux.org"),
-    "download"  => array ("Télécharger", "http://www.archlinux.fr/telecharger", "anb-download", ""),
+    "download"  => array ("Télécharger", "//www.archlinux.fr/telecharger", "anb-download", ""),
     "planet"    => array ("Planète", "http://planet.archlinux.fr/", ""),
 );
 
@@ -18,7 +18,7 @@ function print_arch_header($selected = "home", $utf8 = true)
 
 <div id="archnavbar" class="<?php echo $GLOBALS['archfr']['nav_link'][$selected][2]; ?>">
     <div id="archnavbarlogo">
-        <h1><a href="http://www.archlinux.fr" title="Arch Linux">Arch Linux</a></h1>
+        <h1><a href="//archlinux.fr" title="Arch Linux">Arch Linux</a></h1>
     </div>
     <div id="archnavbarmenu">
         <ul id="archnavbarlist"><?php
@@ -50,7 +50,7 @@ function print_arch_footer($complement = "", $utf8 = true)
 
 <div id="footer">
     <p>Design depuis 
-        <a href="http://www.archlinux.org" title="Design d'Archlinux.org">Archlinux.org</a>
+        <a href="https://www.archlinux.org" title="Design d'Archlinux.org">Archlinux.org</a>
         <br />
         <?php
             if ($complement != '')
