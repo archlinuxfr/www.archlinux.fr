@@ -1,16 +1,16 @@
 <?php
 $feed_side = array(
     array(
-        "url"        => "http://www.archlinux.org/feeds/packages/",
+        "url"        => "https://www.archlinux.org/feeds/packages/",
         "title"      => "Derniers paquets",
-        "more"       => "http://www.archlinux.org/packages/?sort=-last_update",
+        "more"       => "https://www.archlinux.org/packages/?sort=-last_update",
         "more_title" => "Derniers paquets",
         "max"        => 15
     ),
     array(
-        "url"        => "http://afur.archlinux.fr/feed.php",
+        "url"        => "https://afur.archlinux.fr/feed.php",
         "title"      => "[archlinuxfr]",
-        "more"       => "http://afur.archlinux.fr/",
+        "more"       => "https://afur.archlinux.fr/",
         "more_title" => "Derniers paquets",
         "max"        => 10
     )
