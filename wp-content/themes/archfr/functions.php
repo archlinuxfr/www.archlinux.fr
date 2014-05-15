@@ -1,108 +1,87 @@
 <?php
-$feed_side = array(
+
+$feeds = array(
     array(
-        "url"        => "https://www.archlinux.org/feeds/packages/",
-        "title"      => "Derniers paquets",
-        "more"       => "https://www.archlinux.org/packages/?sort=-last_update",
-        "more_title" => "Derniers paquets",
-        "max"        => 15
+        'url'        => 'https://www.archlinux.org/feeds/packages/',
+        'title'      => 'Derniers paquets',
+        'more'       => 'https://www.archlinux.org/packages/?sort=-last_update',
+        'more_title' => 'Derniers paquets',
+        'max'        => 15
     ),
     array(
-        "url"        => "https://afur.archlinux.fr/feed.php",
-        "title"      => "[archlinuxfr]",
-        "more"       => "https://afur.archlinux.fr/",
-        "more_title" => "Derniers paquets",
-        "max"        => 10
+        'url'        => 'https://afur.archlinux.fr/feed.php',
+        'title'      => '[archlinuxfr]',
+        'more'       => 'https://afur.archlinux.fr/',
+        'more_title' => 'Derniers paquets',
+        'max'        => 10
     )
 );
 
-function print_rss($data)
+function get_feeds()
 {
-    include_once(ABSPATH . WPINC . '/feed.php');
-    $rss = fetch_feed($data['url']);
-    if (!is_wp_error($rss)) {
-        $maxitems = $rss->get_item_quantity($data['max']);
-        if ($maxitems>0)
-            $items = $rss->get_items(0, $maxitems);
-        else
-            $items = false;
+    global $feeds;
+    $result = array();
+    foreach ($feeds as $data) {
+        $feed = new StdClass();
+        foreach ($data as $key => $value) {
+            $feed->$key = $value;
+        }
+        $feed->items = get_items($data);
+        $result[] = $feed;
     }
-?>
-<div id="pkg-updates" class="widget box">
-    <h3><?php echo $data['title'] ?> <span class="more">(<a href="<?php echo $data['more'] ?>"
-                title="<?php echo $data['more_title'] ?>">plus</a>)</span></h3>
-    <a href="<?php echo $data['url'] ?>" title="<?php echo $data['title'] ?>"
-      class="rss-icon"><img src="<?php echo bloginfo('url'); ?>/wp-includes/images/rss.png" alt="RSS Feed" /></a>
-    <table>
-    <?php if (empty($items)): ?>
-        <tr><td>Aucune entrée.</td></tr>
-    <?php else: ?>
-        <?php foreach ($items as $item): ?>
-        <tr><td class="pkg-name"><a href='<?php echo  $item->get_permalink(); ?>' title='<?php echo $item->get_title(); ?>'><?php echo $item->get_title(); ?></a></td></tr>
-        <?php endforeach; ?>
-    <?php endif; ?>
-    </table>
-</div>
-<?php
+    return $result;
 }
 
-function print_side_rss($data, $display_arch = false)
+function get_items($data)
 {
     include_once(ABSPATH . WPINC . '/feed.php');
-    $rss = fetch_feed($data['url']);
-    if (!is_wp_error($rss)) {
-        $maxitems = $rss->get_item_quantity($data['max']);
-        if ($maxitems>0)
-            $items = $rss->get_items(0, $maxitems);
-        else
-            $items = false;
-    }
-?>
-<div id="pkg-updates" class="widget box">
-    <h3><?php echo $data['title'] ?> <span class="more">(<a href="<?php echo $data['more'] ?>"
-                title="<?php echo $data['more_title'] ?>">plus</a>)</span></h3>
-    <a href="<?php echo $data['url'] ?>" title="<?php echo $data['title'] ?>"
-      class="rss-icon"><img src="<?php echo bloginfo('url'); ?>/wp-includes/images/rss.png" alt="RSS Feed" /></a>
-    <table>
-    <?php if (empty($items)): ?>
-        <tr><td colspan="2">Aucune entrée.</td></tr>
-    <?php else: ?>
-        <?php foreach ($items as $item): ?>
-        <tr>
-            <?php if ($display_arch) {
-                if (($arch_pos = strpos ($item->get_title(), 'i686')) !== false) {
-                    $pkg=substr ($item->get_title(), 0, $arch_pos);
-                    $arch = "i686";
-                } else if (($arch_pos = strpos ($item->get_title(), 'any')) !== false) {
-                    $pkg=substr ($item->get_title(), 0, $arch_pos);
-                    $arch = "any";
+    $feed = fetch_feed($data['url']);
+    if (is_wp_error($rss)) return array();
+
+    $result = array();
+    foreach ($feed->get_items() as $feed_item) {
+        $pkg = $feed_item->get_title();
+        $link = $feed_item->get_permalink();
+
+        if ($feed_item->get_categories()) {
+            foreach ($feed_item->get_categories() as $category) {
+                $category = $category->get_term();
+                if (in_array($category, array('any', 'i686', 'x86_64'))) {
+                    $arch = $category;
                 } else {
-                    $arch_pos = strpos ($item->get_title(), 'x86_64');
-                    $pkg=substr ($item->get_title(), 0, $arch_pos);
-                    $arch = "x86_64";
+                    $repo = $category;
                 }
-            } else {
-                $pkg = $item->get_title();
-                $arch = "&nbsp;";
-            } ?>
-            <td class="pkg-name"><a href='<?php echo $item->get_permalink(); ?>' title='<?php echo $pkg; ?>'><?php echo $pkg; ?></a></td>
-            <td class="pkg-arch"><?php echo $arch; ?></td>
-        </tr>
-        <?php endforeach; ?>
-    <?php endif; ?>
-    </table>
-</div> <!-- #pkg-updates -->
-<?php
-}
+            }
+            $pkg = preg_replace('/ ' . $arch . '$/', '', $pkg);
+        } else {
+            $parts = explode(' ', $pkg);
+            $arch = array_pop($parts);
+            $pkg = implode(' ', $parts);
+        }
 
-function print_feed_side()
-{
-    global $feed_side;
-    foreach ($feed_side as $data) {
-        echo "<div class=\"updates\">\n";
-        print_side_rss ($data, true);
-        echo "</div>\n";
+        if (isset($result[$pkg])) {
+            $item = $result[$pkg];
+        } else {
+            $item = new StdClass();
+            $item->pkg  = $pkg;
+            $item->repo = strtolower($repo);
+            $item->arch = array();
+            $result[$pkg] = $item;
+        }
+
+        $item->arch[$arch] = $link;
+        ksort($item->arch);
     }
+
+    return array_slice($result, 0, $data['max']);
 }
 
-?>
+// Adds 'odd' and 'even' classes to each post
+function wp_oddeven_post_class($classes) {
+    global $current_class;
+    $classes[] = $current_class;
+    $current_class = ($current_class == 'odd') ? 'even' : 'odd';
+    return $classes;
+}
+add_filter('post_class', 'wp_oddeven_post_class');
+$current_class = 'odd';
