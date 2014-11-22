@@ -65,8 +65,7 @@
     text-decoration: underline !important;
 }
 
-#archnavbarbutshowr, #archnavbarbuthider,
-#archnavbarbutshowl, #archnavbarbuthidel {
+#archnavbaropenmenu {
     display: none !important;
 }
 
@@ -101,32 +100,15 @@
         position: relative !important;
     }
 
-    #archnavbarbutshowl, #archnavbarbuthidel {
+    #archnavbaropenmenu {
+        background: white center repeat url('images/but-nav-bar.png') !important;
         width: 35px !important;
         height: 31px !important;
         cursor: pointer !important;
+        display: inline-block !important;
         position: absolute !important;
         top: 8px !important;
         right: 48px !important;
-    }
-    #archnavbarbutshowl {
-        background: white center no-repeat url('images/but-nav-bar.png') !important;
-    }
-    #archnavbarbuthidel {
-        background: white center no-repeat url('images/but-nav-bar-active.png') !important;
-    }
-
-    #archnavbarbutshowr:checked ~ #archnavbarbutshowl {
-        display:none !important;
-    }
-    #archnavbarbutshowr:checked ~ #archnavbarbuthidel {
-        display:inline-block !important;
-    }
-    #archnavbarbuthider:checked ~ #archnavbarbuthidel {
-        display:none !important;
-    }
-    #archnavbarbuthider:checked ~ #archnavbarbutshowl {
-        display:inline-block !important;
     }
 
     #archnavbarlist {
@@ -139,11 +121,10 @@
         background: none repeat scroll 0% 0% transparent !important;
     }
 
-    #archnavbarbutshowl:hover ~ #archnavbarlist,
-    #archnavbarbutshowr:checked ~ #archnavbarlist, #archnavbarlist:hover {
+    #archnavbaropenmenu:hover + #archnavbarlist, #archnavbarlist:hover {
         display: inline-block !important;
     }
-    #archnavbarbutshowl:hover {
+    #archnavbaropenmenu:hover {
         background-color: #08c !important;
     }
 
