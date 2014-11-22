@@ -1051,13 +1051,6 @@ ul.signoff-list {
     position: relative; top: -0.9em;
 }
 
-/* highlight current website in the navbar */
-#archnavbar.anb-home ul li#anb-home a,
-#archnavbar.anb-packages ul li#anb-packages a,
-#archnavbar.anb-download ul li#anb-download a {
-    color: white !important;
-}
-
 /* visualizations page */
 .visualize-buttons {
     margin: 0.5em 0.33em;
