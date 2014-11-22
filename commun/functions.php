@@ -22,7 +22,10 @@ function print_arch_header($selected = "home", $utf8 = true)
         <h1><a href="//archlinux.fr" title="Arch Linux">Arch Linux</a></h1>
     </div>
     <div id="archnavbarmenu">
-        <i id="archnavbaropenmenu" class="archnavbaropenmenu"></i>
+        <input type="radio" id="archnavbarbutshowr" name="archnavbarbutradio">
+        <input type="radio" id="archnavbarbuthider" name="archnavbarbutradio" checked="checked">
+        <label for="archnavbarbutshowr" id="archnavbarbutshowl"> </label>
+        <label for="archnavbarbuthider" id="archnavbarbuthidel"> </label>
         <ul id="archnavbarlist"><?php
             foreach ($GLOBALS['archfr']['nav_link'] as $key => $data):
                 if ($selected == $key)

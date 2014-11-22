@@ -65,7 +65,8 @@
     text-decoration: underline !important;
 }
 
-#archnavbaropenmenu {
+#archnavbarbutshowr, #archnavbarbuthider,
+#archnavbarbutshowl, #archnavbarbuthidel {
     display: none !important;
 }
 
@@ -99,21 +100,33 @@
     #archnavbarmenu {
         position: relative !important;
     }
-    #archnavbaropenmenu {
-        background: white center no-repeat url('images/but-nav-bar.png') !important;
+
+    #archnavbarbutshowl, #archnavbarbuthidel {
         width: 35px !important;
         height: 31px !important;
         cursor: pointer !important;
-        display: inline-block !important;
         position: absolute !important;
         top: 8px !important;
         right: 48px !important;
     }
-    #archnavbaropenmenu:before {
-        content: url('images/but-nav-bar.png');
+    #archnavbarbutshowl {
+        background: white center no-repeat url('images/but-nav-bar.png') !important;
     }
-    #archnavbaropenmenu:active.archnavbaropenmenu:before {
-        content: url('images/but-nav-bar-active.png');
+    #archnavbarbuthidel {
+        background: white center no-repeat url('images/but-nav-bar-active.png') !important;
+    }
+
+    #archnavbarbutshowr:checked ~ #archnavbarbutshowl {
+        display:none !important;
+    }
+    #archnavbarbutshowr:checked ~ #archnavbarbuthidel {
+        display:inline-block !important;
+    }
+    #archnavbarbuthider:checked ~ #archnavbarbuthidel {
+        display:none !important;
+    }
+    #archnavbarbuthider:checked ~ #archnavbarbutshowl {
+        display:inline-block !important;
     }
 
     #archnavbarlist {
@@ -126,11 +139,11 @@
         background: none repeat scroll 0% 0% transparent !important;
     }
 
-    #archnavbaropenmenu:hover ~ #archnavbarlist,
-    #archnavbaropenmenu:active ~ #archnavbarlist, #archnavbarlist:hover {
+    #archnavbarbutshowl:hover ~ #archnavbarlist,
+    #archnavbarbutshowr:checked ~ #archnavbarlist, #archnavbarlist:hover {
         display: inline-block !important;
     }
-    #archnavbaropenmenu:hover {
+    #archnavbarbutshowl:hover {
         background-color: #08c !important;
     }
 
