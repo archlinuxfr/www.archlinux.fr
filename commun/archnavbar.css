@@ -5,19 +5,19 @@
  */
 
 /* container for the entire bar */
+#archnavbar * {
+    line-height: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 #archnavbar {
     height: 40px !important;
     padding: 10px 15px !important;
     background: #333 !important;
     border-bottom: 5px #08c solid !important;
 }
-#archnavbar * {
-    line-height: 1;
-}
 #archnavbarlogo {
     float: left !important;
-    margin: 0 !important;
-    padding: 0 !important;
     height: 50px !important;
     width: 200px !important;
     background: url('images/logo.png') no-repeat !important;
@@ -25,8 +25,6 @@
 
 /* move the heading text offscreen */
 #archnavbarlogo h1 {
-    margin: 0 !important;
-    padding: 0 !important;
     text-indent: -9999px !important;
 }
 
@@ -42,8 +40,6 @@
     display: inline !important;
     float: right !important;
     list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
 }
 #archnavbarlist li {
     float: left !important;
