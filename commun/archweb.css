@@ -9,6 +9,9 @@
 /* import the global navbar stylesheet */
 @import url('/commun/archnavbar.css');
 
+/* import the archfr custom stylesheet */
+@import url('/commun/archfr.css');
+
 /* simple reset */
 * {
     margin: 0;
