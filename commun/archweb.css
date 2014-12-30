@@ -9,6 +9,9 @@
 /* import the global navbar stylesheet */
 @import url('/commun/archnavbar.css');
 
+/* import the archfr custom stylesheet */
+@import url('/commun/archfr.css');
+
 /* simple reset */
 * {
     margin: 0;
@@ -1049,6 +1052,13 @@ ul.signoff-list {
 
 #releng-feedback ul+.helptext {
     position: relative; top: -0.9em;
+}
+
+/* highlight current website in the navbar */
+#archnavbar.anb-home ul li#anb-home a,
+#archnavbar.anb-packages ul li#anb-packages a,
+#archnavbar.anb-download ul li#anb-download a {
+    color: white !important;
 }
 
 /* visualizations page */
