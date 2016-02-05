@@ -10,7 +10,7 @@ $GLOBALS['archfr']['nav_link'] = array (
     "packages"  => array ("Paquets", "https://www.archlinux.org/packages/", "anb-packages", "Lien vers archlinux.org"),
     "aur"       => array ("AUR", "https://aur.archlinux.org/index.php?setlang=fr", "anb-aur", "Lien vers archlinux.org"),
     "download"  => array ("Télécharger", "//www.archlinux.fr/telecharger", "anb-download", ""),
-    "planet"    => array ("Planète", "http://planet.archlinux.fr/", "anb-planet", ""),
+    "planet"    => array ("Planète", "//planet.archlinux.fr/", "anb-planet", ""),
 );
 
 function print_arch_header($selected = "home", $utf8 = true)
@@ -57,7 +57,7 @@ function print_arch_footer($complement = "", $utf8 = true)
         <?php
             if ($complement != '')
                 echo $complement . "<br/>";
-            $str = "© 2014 Archlinux.fr ~ Communauté Francophone Arch Linux";
+            $str = "© 2016 Archlinux.fr ~ Communauté Francophone Arch Linux";
             if (!$utf8)
                 $str = utf8_decode($str);
             echo $str;
