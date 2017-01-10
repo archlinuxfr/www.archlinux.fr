@@ -57,7 +57,7 @@ function print_arch_footer($complement = "", $utf8 = true)
         <?php
             if ($complement != '')
                 echo $complement . "<br/>";
-            $str = "© 2016 Archlinux.fr ~ Communauté Francophone Arch Linux";
+            $str = "© " . date('Y') . " Archlinux.fr ~ Communauté Francophone Arch Linux";
             if (!$utf8)
                 $str = utf8_decode($str);
             echo $str;
