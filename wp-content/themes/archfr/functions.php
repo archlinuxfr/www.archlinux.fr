@@ -85,3 +85,8 @@ function wp_oddeven_post_class($classes) {
 }
 add_filter('post_class', 'wp_oddeven_post_class');
 $current_class = 'odd';
+
+// Adds feeds to meta (headers)
+if (function_exists('automatic_feed_links')) {
+    automatic_feed_links();
+}
