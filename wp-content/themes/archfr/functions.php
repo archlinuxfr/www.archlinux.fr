@@ -8,13 +8,6 @@ $feeds = array(
         'more_title' => 'Derniers paquets',
         'max'        => 15
     ),
-    array(
-        'url'        => 'https://afur.archlinux.fr/feed.php',
-        'title'      => '[archlinuxfr]',
-        'more'       => 'https://afur.archlinux.fr/',
-        'more_title' => 'Derniers paquets',
-        'max'        => 10
-    )
 );
 
 function get_feeds()
@@ -36,7 +29,6 @@ function get_items($data)
 {
     include_once(ABSPATH . WPINC . '/feed.php');
     $feed = fetch_feed($data['url']);
-    if (is_wp_error($rss)) return array();
 
     $result = array();
     foreach ($feed->get_items() as $feed_item) {
