@@ -8,7 +8,7 @@ $GLOBALS['archfr']['nav_link'] = array (
     "wiki"      => array ("Wiki", "//wiki.archlinux.org/title/Main_page_(Fran%C3%A7ais)", "anb-wiki", ""),
     "bug"       => array ("Bugs", "https://bugs.archlinux.org/", "anb-bugs", "Lien vers archlinux.org"),
     "packages"  => array ("Paquets", "https://www.archlinux.org/packages/", "anb-packages", "Lien vers archlinux.org"),
-    "aur"       => array ("AUR", "https://aur.archlinux.org/index.php?setlang=fr", "anb-aur", "Lien vers archlinux.org"),
+    "aur"       => array ("AUR", "https://aur.archlinux.org/", "anb-aur", "Lien vers archlinux.org"),
     "download"  => array ("Télécharger", "//www.archlinux.fr/telecharger", "anb-download", ""),
 );
 
